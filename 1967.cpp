@@ -35,23 +35,26 @@ Explanation: Each of the patterns appears as a substring in word "ab".
 
 class Solution {
 public:
-    int numOfStrings(vector<string>& patterns, string word) {
+    int numOfStrings(vector<string>& patterns, string word) 
+    {
         int count = 0;
-        for (int i = 0; i < patterns.size(); ++i)
+        for (const std::string& pattern : patterns) 
         {
-            for (int j = 0; patterns[i][j] != '\0'; ++j)
+            int patternLength = pattern.length();
+            int wordLength = word.length();
+            for (int i = 0; i <= wordLength - patternLength; ++i) 
             {
-                int tmpCount = count;
-                for (int k = 0; word[k] != '\0'; ++k)
+                int j;
+                for (j = 0; j < patternLength; ++j) 
                 {
-                    if (patterns[i][j] == word[k])
+                    if (word[i + j] != pattern[j]) 
                     {
-                        ++count;
                         break;
                     }
                 }
-                if (tmpCount != count)
+                if (j == patternLength) 
                 {
+                    ++count;
                     break;
                 }
             }
