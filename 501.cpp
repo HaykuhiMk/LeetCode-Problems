@@ -24,21 +24,21 @@ Output: [2]
  */
 class Solution {
 public:
-    void inOrderTraversal(TreeNode* root, std::vector<int>& vc) 
+    void inorderTraversal(TreeNode* root, std::vector<int>& vc) 
     {
         if (root == nullptr) 
         {
             return;
         }
-        inOrderTraversal(root->left, vc);
+        inorderTraversal(root->left, vc);
         vc.push_back(root->val);
-        inOrderTraversal(root->right, vc);
+        inorderTraversal(root->right, vc);
     }
 
     std::vector<int> findMode(TreeNode* root) 
     {
         std::vector<int> vec;
-        inOrderTraversal(root, vec);
+        inorderTraversal(root, vec);
         std::map<int, int> count;
         for (const auto& num : vec) 
         {
