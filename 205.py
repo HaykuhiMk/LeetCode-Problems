@@ -1,4 +1,5 @@
 class Solution:
+# Version 1
     def isIsomorphic(self, s: str, t: str) -> bool:
         char_index_s = {}
         char_index_t = {}
@@ -10,3 +11,7 @@ class Solution:
             if char_index_s[s[i]] != char_index_t[t[i]]:
                 return False
         return True
+
+# Version 2 
+    # def isIsomorphic(self, s: str, t: str) -> bool:
+    #     return [*map(s.index, s)] == [*map(t.index, t)]
