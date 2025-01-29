@@ -17,3 +17,7 @@ class Solution:
                 word_to_char[word] = ch
                 
         return True
+
+
+    # t = str.split()
+    # return [*map(pattern.index, pattern)] == [*map(t.index, t)]
