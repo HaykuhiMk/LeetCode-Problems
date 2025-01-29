@@ -1,23 +1,33 @@
-class Solution:
-    def wordPattern(self, pattern: str, s: str) -> bool:
-        words = s.split()
-        if len(pattern) != len(words):
-            return False 
-        char_to_word = {} 
-        word_to_char = {} 
+class Solution {
+public:
+    bool wordPattern(string pattern, string s) {
+        vector<string> words;
+        string word;
+        stringstream ss(s);
         
-        for ch, word in zip(pattern, words):
-            if ch in char_to_word:
-                if char_to_word[ch] != word:
-                    return False  
-            else:
-                if word in word_to_char:
-                    return False  
-                char_to_word[ch] = word
-                word_to_char[word] = ch
-                
-        return True
-
-
-    # t = str.split()
-    # return [*map(pattern.index, pattern)] == [*map(t.index, t)]
+        while (ss >> word) {
+            words.push_back(word);
+        }
+        
+        if (pattern.size() != words.size()) {
+            return false;  
+        }
+        
+        unordered_map<char, string> char_to_word;
+        unordered_map<string, char> word_to_char;
+        
+        for (int i = 0; i < pattern.size(); i++) {
+            char ch = pattern[i];
+            string w = words[i];
+            
+            if (char_to_word.contains(ch)) {
+                if (char_to_word[ch] != w) return false; 
+            } else {
+                if (word_to_char.contains(w)) return false;  
+                char_to_word[ch] = w;
+                word_to_char[w] = ch;
+            }
+        }
+        return true;
+    }
+};
